@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - level
+  - bruh
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - grapplepoint
+  - Water
+  - UI
+  - enemy
+  - enemy 2
+  - enemy 3
+  - enemy 4
+  - enemy 5
+  - enemy 6
+  - enemy 7
+  - grapplepoint
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: nigga
+    uniqueID: 1930434199
+    locked: 0
+  - name: New Layer
+    uniqueID: 3497455791
+    locked: 0
+  - name: New Layer
+    uniqueID: 478562237
+    locked: 0
+  - name: New Layer
+    uniqueID: 672324251
+    locked: 0
+  - name: New Layer
+    uniqueID: 416898089
+    locked: 0
+  - name: New Layer
+    uniqueID: 1720865807
+    locked: 0
+  - name: New Layer
+    uniqueID: 310926411
+    locked: 0
