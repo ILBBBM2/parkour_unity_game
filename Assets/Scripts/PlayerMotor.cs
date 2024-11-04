@@ -94,6 +94,7 @@ public class PlayerMotor : MonoBehaviour
     public float extraspeed = 7f;
     public bool jumpinwhilegrappling = false;
     public bool wakeupsound = false;
+    public LayerMask grapplelayer;
     
     // Start is called before the first frame update
     void Start()
@@ -131,10 +132,14 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     public Vector3 charactervelocity;
 
-    
+    RaycastHit testhit;
     void Update()
     {
         
+        //Ray testray = new Ray(cam.transform.position, cam.transform.forward);
+        //if (Physics.Raycast(testray, out testhit, Mathf.Infinity, enemylayer)){
+        //    Debug.Log(testhit.transform.gameObject.name);   
+        //}
         if(characterVelocitymomentum.magnitude >= 0f){
             float momentumdrag = 16f;
             characterVelocitymomentum -= characterVelocitymomentum * momentumdrag * Time.deltaTime;
@@ -147,6 +152,7 @@ public class PlayerMotor : MonoBehaviour
         Ray grappleray = new Ray(cam.transform.position, cam.transform.forward);
         
         if(Vector3.Distance(transform.position, hookshotpos) < 1.5f){
+
             imgrapplingrn = false;
             jumpinwhilegrappling = false;
         }
@@ -415,7 +421,7 @@ public class PlayerMotor : MonoBehaviour
         //}
         Ray niggrappleray = new Ray(cam.transform.position, cam.transform.forward);
         imgrapplingrn = true;
-        if(Physics.Raycast(niggrappleray, out grapplehit, grappledistance)){
+        if(Physics.Raycast(niggrappleray, out grapplehit, grappledistance,enemylayer)){
                 //Debug.Log("it works");
                 hookshotpos = grapplehit.point;
                 imgrapplingrn = true;
