@@ -20,6 +20,18 @@ public class InputManager : MonoBehaviour
     void FixedUpdate()
     {
         //playermotor moves from the value from the action ong no cyap
+        //motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        //onFoot.Jump.performed += ctx => motor.Jump();
+        //onFoot.DJump.performed += ctx => motor.DoubleJump();
+        //onFoot.Crouch.performed += ctx => motor.Crouch();
+        //onFoot.Dash.performed += ctx => motor.dash();
+        //onFoot.fent.performed += ctx => motor.fent();
+        //onFoot.grapple.performed += ctx => motor.grapple();
+        //onFoot.sensup.performed += ctx => motor.sensup();
+        //onFoot.sensdown.performed += ctx => motor.sensdown();
+        //onFoot.shoot.performed += ctx => motor.shoot();
+    }
+    void Update(){
         motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
         onFoot.Jump.performed += ctx => motor.Jump();
         onFoot.DJump.performed += ctx => motor.DoubleJump();

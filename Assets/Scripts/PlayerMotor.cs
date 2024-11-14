@@ -81,7 +81,10 @@ public class PlayerMotor : MonoBehaviour
     public float grappletraveldistance;
     //audio
     public AudioSource soundPlayer;
+    public AudioSource pew;
     public AudioSource wakeupsoundPlayer;
+    public AudioSource jumpsound;
+    public AudioSource grapplesound;
     public bool hitenemy = false;
     
     public bool grave = false;
@@ -95,6 +98,7 @@ public class PlayerMotor : MonoBehaviour
     public bool jumpinwhilegrappling = false;
     public bool wakeupsound = false;
     public LayerMask grapplelayer;
+    public int numoftriggers = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -111,7 +115,7 @@ public class PlayerMotor : MonoBehaviour
         grappledistance = 50;
         playerVelocity.y =0;
         playerVelocity.x =0;
-        
+        pew.volume = 0.2f;
         playerVelocity.z =0;
         maxexittime = 20;
         dashh = false;
@@ -159,6 +163,7 @@ public class PlayerMotor : MonoBehaviour
         if(imgrapplingrn){
             
             playerVelocity.y = 0;
+            
             //hookshotpos = grapplehit.point;
             controller.Move(hookshotdir * hookshotspeed * hookshotspeedmulti * Time.deltaTime);
         }
@@ -197,10 +202,12 @@ public class PlayerMotor : MonoBehaviour
         Ray shoot = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit shoothit;
         if(hitenemy){
-            if(Physics.Raycast(shoot, out shoothit, 60, enemylayer)){
+            if(Physics.Raycast(shoot, out shoothit, 60, enemylayer2)){
                 //grave = true;
                 //Destroy(shoothit.transform.gameObject);
-                shoothit.transform.position = new Vector3(-826,16.8799992f,-1702.76001f);
+                shoothit.transform.position = new Vector3(345.609985f,49.8100014f,374.329987f);
+                numoftriggers ++;
+                pew.Play();
             }
             
             hitenemy = false;
@@ -359,10 +366,13 @@ public class PlayerMotor : MonoBehaviour
         if (IsGrounded){
             //the 1.49f is the jumpheight change later
             playerVelocity.y = Mathf.Sqrt(1.49f * -3.0f * gravity);
+            jumpsound.Play();
+            
         }
         if(wallrunning){
             walljump = true;
             playerVelocity.y = Mathf.Sqrt(1.49f * -3.0f * gravity);
+            jumpsound.Play();
         }
         jumpinwhilegrappling = true;
         imgrapplingrn = false;
@@ -380,6 +390,7 @@ public class PlayerMotor : MonoBehaviour
     public void DoubleJump(){
         if (DJ == true){
             playerVelocity.y = Mathf.Sqrt(1.49f * -3.0f * gravity);
+            jumpsound.Play();
             DJ = false;
         }
         jumpinwhilegrappling = true;
@@ -425,6 +436,7 @@ public class PlayerMotor : MonoBehaviour
                 //Debug.Log("it works");
                 hookshotpos = grapplehit.point;
                 imgrapplingrn = true;
+                grapplesound.Play();
                 //controller.Move(hookshotdir * hookshotspeed * Time.deltaTime);
         }else{
             hookshotpos = transform.position;
@@ -451,6 +463,7 @@ public class PlayerMotor : MonoBehaviour
             //Debug.Log("Clicked on " + shoothit.transform.gameObject.name); 
             //Destroy(hit.collider.gameObject);
             hitenemy = true;
+            pew.Play();
         //}        
         
     }
